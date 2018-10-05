@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Header, Left, Button, Icon, Body, Title, Right } from 'native-base';
+import { Container, Header, Button, Icon, Item, Input, Text, Content } from 'native-base';
+import { connect } from 'react-redux'
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({
@@ -9,20 +10,26 @@ class HomeScreen extends React.Component {
     render() {
         return (
           <Container>
-            <Header>
-              <Left>
+            <Header searchBar rounded>
+                <Item>
+                  <Icon name="md-search" />
+                  <Input placeholder="Search" />
+                  <Icon name="md-home" />
+                </Item>
                 <Button transparent>
-                  <Icon name='menu' />
+                  <Text>Search</Text>
                 </Button>
-              </Left>
-              <Body>
-                <Title>Header</Title>
-              </Body>
-              <Right />
             </Header>
+            <Content>
+              <Text>{this.props.roomData.rooms[0]}</Text>
+            </Content>
           </Container>
         )
     }
 }
 
-export default HomeScreen
+const mapStateToProps = (state) => ({
+    roomData : state.roomData
+})
+
+export default connect(mapStateToProps)(HomeScreen)
