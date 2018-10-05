@@ -27,6 +27,25 @@ const roomData = (state = initialState, action) => {
                 error: action.payload
             }
         
+        case "GET_ROOM_PENDING":
+            return {
+                ...state,
+                fetching: true
+            }
+        case "GET_ROOM_FULFILLED":
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                room: action.payload.data.data
+            }
+        case "GET_ROOM_REJECTED":
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload
+            }
+        
         default:
             return state
     }

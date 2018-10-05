@@ -1,20 +1,34 @@
-import { createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
+import DetailScreen from '../screens/DetailScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen'
 
-const RouteStack = createBottomTabNavigator({
+const AppStack = createStackNavigator({
     Home: {
       screen: HomeScreen
     },
-    Login: {
-      screen: LoginScreen
+    Detail: {
+      screen: DetailScreen,
+      navigationOptions: {
+        header: null
+      }
     }
-},
-  {
-    tabBarOptions : {
-      activeTintColor: "red"
-    }
+});
+
+const AuthStack = createStackNavigator({
+  Login: {
+    screen: LoginScreen
   }
-);
+});
+
+
+const RouteStack = createSwitchNavigator({
+  AuthLoading: AuthLoadingScreen,
+  App: AppStack,
+  Auth: AuthStack
+},{
+  initialRouteName: "AuthLoading"
+})
 
 export default RouteStack
