@@ -24,7 +24,6 @@ class DetailScreen extends React.Component {
     
     render() {
         const item = this.props.roomData.room
-        alert(JSON.stringify(item))
         return (
           <Container >
             <Header>
