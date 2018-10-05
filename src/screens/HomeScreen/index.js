@@ -38,7 +38,10 @@ class HomeScreen extends React.Component {
               this.props.dispatch(getRoom(item._id))
               this.props.navigation.navigate('Detail')
             }}>
-              <CardItem cardBody style={{height: 250, position: 'relative'}}>
+              <CardItem cardBody style={{height: 250, position: 'relative', overflow: 'hidden'}}>
+                <View style={{position: 'absolute', top: 0, zIndex: 999999, paddingTop: 10, paddingBottom: 10, paddingLeft: 20, paddingRight: 20, backgroundColor: item.full ? 'red' : 'green'}}>
+                  <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 16}}>{item.full ? 'Full' : 'Available'}</Text>
+                </View>
                 <Image source={{uri: item.image}} style={{height: 250, width: '100%'}}/>
                 <View style={styles.detailItem}>
                   <H3 style={{color: '#fff'}}>{item.name}</H3>
@@ -91,6 +94,13 @@ const styles = StyleSheet.create({
     },
     header: {
       flexDirection: 'row'
+    },
+    info: {
+      position: 'absolute',
+      zIndex: 1000,
+      top: 0,
+      left: 0,
+      backgroundColor: 'red'
     }
 })
 
