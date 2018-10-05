@@ -1,13 +1,20 @@
 import React from 'react';
 import { Container, Header, Button, Icon, Item, Input, Text, Content } from 'native-base';
 import { connect } from 'react-redux'
+import { fetchRoom } from '../../redux/actions/roomAct';
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({
           tabBarIcon: <Icon name="home" />
     })
 
+    componentWillMount = () => {
+      this.props.dispatch(fetchRoom())
+    }
+    
+
     render() {
+        console.log("data dari component", this.props.roomData)
         return (
           <Container>
             <Header searchBar rounded>
@@ -21,7 +28,7 @@ class HomeScreen extends React.Component {
                 </Button>
             </Header>
             <Content>
-              <Text>{this.props.roomData.rooms[0]}</Text>
+              <Text>OK</Text>
             </Content>
           </Container>
         )
